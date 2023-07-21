@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Takayuki"
+    "\\Takayuki",
+    "\\Takayuki\\Pages-Takayuki"
   ],
-  "SelectedNode": "\\Takayuki",
+  "SelectedNode": "\\Takayuki\\Pages-Takayuki\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
