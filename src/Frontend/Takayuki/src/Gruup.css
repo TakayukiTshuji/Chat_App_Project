@@ -1,0 +1,74 @@
+/*TODO:はるか下にある*/
+.Dis{
+    background-color: white;
+}
+
+.GrupDis{
+    width: 498px;
+    height: 125px;
+    text-align: center;
+    color: #B6DF8C;
+    font-size: 40px;
+    line-height: 10px;
+}
+.NameDisplay{    
+    width: 890px;
+    height: 100px;
+    text-align: center;
+    position: absolute;
+    right: 1px;
+    bottom: 732px;
+    background-color: #C8D7FF;
+    border: 1px solid black;
+    font-size: 45px;
+    line-height: 10px;
+}
+.memberDis{
+    width: 498px;
+    display:grid;
+}
+.GrupBtn1{
+    height: 128px;
+    font-size: 80px;
+    border: 1px solid black;
+    color: black;
+    background: #D2E5FB;
+    cursor: pointer;
+    transition: .3s;
+}
+.GrupBtn1:hover{
+    color: #007db9;
+  box-shadow: none;
+  background: #fff;
+  transform: translate3d(0, 5px, 0);
+}
+.GrupBtn2{
+    border: 1px solid black;
+    color: black;
+    background: #D2E5FB;
+    height: 128px;
+    font-size: 80px;
+    cursor: pointer;
+    transition: .3s;
+}
+.GrupBtn2:hover{
+    color: #007db9;
+  box-shadow: none;
+  background: #fff;
+  transform: translate3d(0, 5px, 0);
+}
+.GrupBtn3{
+    border: 1px solid black;
+    color: black;
+    background: #D2E5FB;
+    height: 128px;
+    font-size: 80px;
+    cursor: pointer;
+    transition: .3s;
+}
+.GrupBtn3:hover{
+    color: #007db9;
+  box-shadow: none;
+  background: #fff;
+  transform: translate3d(0, 5px, 0);
+}

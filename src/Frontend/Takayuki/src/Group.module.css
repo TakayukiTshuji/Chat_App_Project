@@ -1,0 +1,28 @@
+/*TODO:はるか下にある*/
+.Dis{
+    background-color: white;
+}
+
+.GrupDis{
+    width: 498px;
+    height: 125px;
+    text-align: center;
+    color: #B6DF8C;
+}
+.NameDisplay{    
+    width: 50px;
+    height: 125px;
+    position: absolute;
+    right: 400px;
+    bottom: 710px;
+}
+.memberDis{
+    width: 498px;
+    display:grid;
+}
+.GrupBtn1:hover,
+a.GrupBtn1:hover{
+    border: 1px solid black;
+    color: black;
+    background: #D2E5FB;
+}
