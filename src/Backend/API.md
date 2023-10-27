@@ -1,11 +1,11 @@
 # ChatAppProject
-## 目次
-- [チャット](https://github.com/TakayukiTshuji/Chat_App_Project/tree/main#chatctl)
-- [既読](https://github.com/TakayukiTshuji/Chat_App_Project/tree/main#chatreadcountctl)
-- [チャット部屋](https://github.com/TakayukiTshuji/Chat_App_Project/tree/main#chatroomctl)
-- [セッション](https://github.com/TakayukiTshuji/Chat_App_Project/tree/main#chatsessionctl)
-- [ユーザ](https://github.com/TakayukiTshuji/Chat_App_Project/tree/main#chatuserctl)
-- [入力中](https://github.com/TakayukiTshuji/Chat_App_Project/tree/main#chatwritingctl)
+## 目次https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatctl
+- [チャット](https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatctl)
+- [既読](https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatreadcountctl)
+- [チャット部屋](https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatroomctl)
+- [セッション](https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatsessionctl)
+- [ユーザ](https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatuserctl)
+- [入力中](https://github.com/TakayukiTshuji/Chat_App_Project/blob/main/src/Backend/README.md#chatwritingctl)
 
 **動作にはMongoDBが必要です。**
 
