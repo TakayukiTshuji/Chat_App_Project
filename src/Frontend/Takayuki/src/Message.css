@@ -1,12 +1,12 @@
 .message-container {
-  width: 940px;
-  height: 730px;
+  width: 700px;
+  height: 690px;
   background: linear-gradient(#5867F4,#3CDB8F);
   border: 1px solid black;
   overflow: auto;
   position: absolute;
-  right: 0px;
-  bottom: 0px;
+  right: 280px;
+  bottom: 80px;
 }
 
 .message {
@@ -17,16 +17,16 @@
 
 .input-container {
   background-color: #2B354F;
-  width: 941px;
+  width: 702px;
   height: 80px;
   margin-top: 0px;
   position: absolute;
-  right: 0px;
+  right: 280px;
   bottom: 0px;
   text-align: center;
 }
 .input-text{
-  width: 582px;
+  width: 350px;
   height: 60px;
   border-radius: 70px;
   font-size: 30px;

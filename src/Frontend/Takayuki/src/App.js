@@ -1,17 +1,19 @@
 /*import GroupButton from "./GroupButton";*/
-import GroupButton from "./GroupButton";
-import MessageApp from "./MessageApp";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//import GroupButton from "./GroupButton";
 import LoginForm from "./LoginForm";
+import MessageApp from "./MessageApp";
 
 function App() {  
-  
   return (
-    <div>
-      <LoginForm/>
-      <GroupButton/>
-      <MessageApp/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/'} element={<LoginForm/>}/>
+        <Route path={'/chat'} element={<MessageApp/>}/>
+      </Routes>
+     </BrowserRouter>
   );//コンポーネント化をするときは最初は大文字にする
+  //<GroupButton/>
 }
 
 export default App;

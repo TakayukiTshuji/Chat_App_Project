@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+//import { Link } from 'react-router-dom;'
 import "./Gruup.css";
 
 const GroupButton = () => {
@@ -6,7 +7,6 @@ const GroupButton = () => {
     const ClickHandle=(e)=>{
       setGroup(e.target.value);
     }
-    //TODO:２つのグループ化にする
     return (
       <div className="Gruup">
         <div className="GrupDis">
@@ -19,7 +19,7 @@ const GroupButton = () => {
 
 
         <div className="memberDis">
-            <input className="GrupBtn1" type='button' value='Name0' onClick={ClickHandle}/>
+            <input className="GrupBtn1" type='button' value='Name0' />
             <input className="GrupBtn2" type='button' value='Name1' onClick={ClickHandle}/>
             <input className="GrupBtn3" type='button' value='Name2' onClick={ClickHandle}/>
         </div>

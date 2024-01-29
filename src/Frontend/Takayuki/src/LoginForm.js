@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import "./LoginForm.css";
 
 const LoginForm = () => {
   const [name,setname]=useState("");
   const [password,setpassword]=useState("");
+  const [dat,setDat]=useState(null);
+  const navigate = useNavigate();
+  const [cookies,setCookie]=useCookies();
+
   const handleSession=()=>{
     const loginform={
       "userId":name,
@@ -22,7 +28,9 @@ const LoginForm = () => {
       console.log("data",data);
       setname("");
       setpassword("");
-      console.table(data);
+      setDat(data);
+      navigate("/chat");
+      setCookie("name",data);
     })
     .catch((error) => {
       console.error("Error during login:", error);
@@ -41,6 +49,15 @@ const LoginForm = () => {
       onChange={(e)=>setpassword(e.target.value)}
       />
       <button onClick={handleSession}>Send</button>
+
+      {dat ? (
+        <div>
+          <p>成功</p>
+        </div>
+        
+      ):(
+        <p>データ取得中...</p>
+      )}
     </div>
   )
 }
