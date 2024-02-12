@@ -1,6 +1,8 @@
-import React, {  useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {  useState,useEffect } from 'react';
+import { useNavigate,Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import CryptoJS from 'crypto-js';
+//import Cookies from 'react-cookie';
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -8,34 +10,65 @@ const LoginForm = () => {
   const [password,setpassword]=useState("");
   const [dat,setDat]=useState(null);
   const navigate = useNavigate();
-  const [cookies,setCookie]=useCookies();
+  const [cookies,setCookie]=useCookies(['session_id']);
+
+  const ChangeHas=()=>{
+    const CHname=name;
+    const CHpass=CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex).toUpperCase();
+  }
 
   const handleSession=()=>{
-    const loginform={
-      "userId":name,
-      "password":password
-    };
     fetch(`https://localhost:7038/api/ChatSessionCtl?userId=${name}&password=${password}`,{
       method:'POST',
       credentials:'include',
+      mode:'cors',
       headers:{
-        "Content-Type": "application/json"
-      },
-      body:JSON.stringify(loginform),
+        "Content-Type": "application/json",
+      }
     })
-    .then((response)=>response.json())
+    .then((response) => response.json())
     .then((data) => {
-      console.log("data",data);
-      setname("");
-      setpassword("");
-      setDat(data);
-      navigate("/chat");
-      setCookie("name",data);
+      console.log("sessionId", data.result.sessionId);
+      setname("");      //入力した文字を消す
+      setpassword("");  //入力した文字を消す
+      setDat(data);     //dataがあるか確認するテスト
+      setCookie('session_id',data.result.sessionId,{path:'/',sameSite:'none',httpOnly:true});
+      //session_idの名前、session_idの値、オプションでどこでも使えるようにした
+      console.log('cookie:',cookies);
+      testcoo();
+
+      //ページ遷移を行う
+      navigate("/Room");
     })
     .catch((error) => {
       console.error("Error during login:", error);
     });
   }
+  const testcoo=()=>{
+    fetch(`https://localhost:7038/api/ChatSessionCtl`,{
+      method:'GET',
+      mode:'cors',
+      credentials:'include',
+      headers:{
+          'Content-Type':'application/json',
+          //'Cookie':docucookie
+      }
+    })
+    .then((response)=>{
+        const cookiehead=response.headers.get('Set-Cookie');
+        console.log(cookiehead);
+        return response.json();
+    })
+    .then((data)=>{
+        console.log('login,cookie:',cookies);
+        console.log('login:',data);
+        //setCookie('session_id',data.result.sessionId);
+    })
+  }
+  useEffect(()=>{
+    testcoo()
+  },[])
+
   return (
     <div className='logininput'>
       <input 
@@ -50,6 +83,10 @@ const LoginForm = () => {
       />
       <button onClick={handleSession}>Send</button>
 
+      <div>
+        新規作成はこちら<Link to={'/session'}>こちら</Link>
+      </div>
+
       {dat ? (
         <div>
           <p>成功</p>
@@ -61,5 +98,4 @@ const LoginForm = () => {
     </div>
   )
 }
-
 export default LoginForm
