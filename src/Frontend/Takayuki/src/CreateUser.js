@@ -8,7 +8,7 @@ const CreateUser = () => {
     const navigate = useNavigate();
 
     const create=()=>{
-        fetch(`https://localhost:7038/api/ChatUserCtl?userId=${input}&familyName=${input}&firstName=${input}&language=${input}&studentId=${input}&password=${inpPass}0&nickname_ja=${input}&nickname_en=${input}`,{
+        fetch(`https://localhost:7038/api/ChatUserCtl?userId=${input}&familyName=${input}&firstName=${input}&language=${input}&studentId=${input}&password=${inpPass}&nickname_ja=${input}&nickname_en=${input}`,{
             method:'POST',
             credentials:'include',
             headers:{
@@ -25,6 +25,7 @@ const CreateUser = () => {
 
     return (
         <div>
+            
             <input 
             type='text'
             value={input}

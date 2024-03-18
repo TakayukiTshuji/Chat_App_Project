@@ -1,24 +1,12 @@
 import React, { useState }from 'react'
+import { useNavigate } from 'react-router-dom';
 
-function setCookie(name, value, days) {
-    const expirationDate = new Date();
-    expirationDate.setDate(expirationDate.getDate() + days);
-    const cookie = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/`;
-    document.cookie = cookie;
-  }
 
 const Addgrp = () => {
-
-    //
-    //cookieをいれる
-    //
-    const setSessionCookie = (sessionId) => {
-        setCookie("session_id", sessionId, 7); // 有効期限は7日間
-    };
-
     const [inptext,setinptext]=useState("");
     const [trfal_P,settrfal_P]=useState(false);
     const [trfal_D,settrfal_D]=useState(false);
+    const navigate=useNavigate();
 
     const handleChange=()=>{
         const textgrp={
@@ -38,13 +26,6 @@ const Addgrp = () => {
             //欲しいのはホワイトリスト（指名者）
         })
         .then((response)=>{
-            const sessionCookie = response.headers.get('session_id');
-            if (sessionCookie) {
-                // クッキーが存在する場合、セッションクッキーを設定
-                setSessionCookie(sessionCookie);
-                console.log(sessionCookie);
-            }
-            console.log("response;",response);
             return response.json();
         })
         .then((data)=>{
@@ -52,6 +33,7 @@ const Addgrp = () => {
             settrfal_D(false);
             settrfal_P(false);
             setinptext("");
+            navigate('/Room');
         })
         .catch((error)=>{console.log("Grp:Error sending message",error);})
     }

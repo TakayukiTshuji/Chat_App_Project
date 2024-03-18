@@ -1,14 +1,18 @@
 import React, {useState,useRef, useEffect}from 'react';
-import MessageApp from './MessageApp';
+//import MessageApp from './MessageApp';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 const Room = () => {
     const messagesEndRef = useRef(null);
     const [room,setroom]=useState([]);
-    const [selectroom,setselectroom]=useState(null);
+    const [unionRoom,setunionRoom]=useState([]);
     const [cookies,setCookie,removeCookie]=useCookies(['session_id']);
-    //document.cookie=cookies;
+    const navigate = useNavigate();
+
+    let roomNameID=[];
+
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {  // messagesEndRef.current が null でないことを確認
@@ -17,33 +21,17 @@ const Room = () => {
     };
 
     useEffect(()=>{
+        setTimeout(()=>{
+            getRoom();
+        },5000);
         //テスト用
-        fetch('https://localhost:7038/api/ChatSessionCtl',{
-            mode:'cors',
-            credentials:'include',
-            headers:{
-                'Content-Type':'application/json',
-                //'Cookie':docucookie
-            }
-        })
-        .then((response)=>{
-            const cookiehead=response.headers.get('Set-Cookie');
-            console.log(cookiehead);
-            return response.json();
-        })
-        .then((data)=>{
-            console.log('sxk,cookie:',cookies);
-            console.log('sck',data);
-            //setCookie('session_id',data.result.sessionId);
-        })
-    })
+    },[])
 
     const getRoom=()=>{
         fetch(`https://localhost:7038/api/ChatRoomCtl`,{
             credentials:'include',
             headers:{
                 'Content-Type':'application/json',
-                //'Cookie':docucookie
             }
         })
         .then((response)=>{
@@ -51,28 +39,47 @@ const Room = () => {
         })
         .then((data)=>{
             console.log("successRoomData:",data);
-            const roomid=data.result.map(e=>e.name);
-            setroom([...roomid]);
-            console.log(room);
+            const roomName=data.result.map(e=>e.name);
+            roomNameID=data.result.map(e=>e.room_id);
+            //console.log(roomNameID);
+            setroom([...roomName]);
+            setunionRoom([...roomName]);
         })
         .catch((error)=>{console.log("error:",error)})
+        .finally(()=>scrollToBottom());
     }
 
     const handleRoomClick=(roomid)=>{
-        setselectroom(roomid);
+        const Romnum=unionRoom.indexOf(roomid);
+        if((Romnum!==-1)){
+            console.log("成功")
+        }else{
+            console.log("ありませんでした。");
+        }
+        
+        //roomidは名前だけ取っているので、これがどこの番号か知りたい
+        console.log(roomid);
+        navigate('/chat',{state:{name:Romnum}});
     }
+    const changeAddRom=()=>{
+        navigate('/AddGroup');
+    }
+    const Logout=()=>{
+        removeCookie('sessionId');
+        navigate('/');
+      }
     
     return (
         <div>
             <h1>Room</h1>
+            <button onClick={Logout}>ログアウト</button>
+            <button onClick={changeAddRom}>追加</button>
             <button onClick={getRoom}>更新</button>
             <div>
             {room.map((data, index) => (
                 <button key={index} onClick={() => handleRoomClick(data)}>{data}</button>
             ))}
             </div>
-            {selectroom && <MessageApp room={selectroom}/>}
-            <div ref={messagesEndRef}></div>
         </div>
     )
 }

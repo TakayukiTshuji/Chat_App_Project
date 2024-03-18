@@ -1,18 +1,21 @@
 import React, { useState,useEffect,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useLocation } from "react-router-dom";
 import "./Message.css";
 
 //--------
 /*GETを行う*/
 //--------
-const MessageApp = ({room}) => {
+const MessageApp = () => {
   const [usermessages, setUserMessages] = useState([]);
   const [inputValue, setInputValue]     = useState("");
-  const [sender, setSender]             = useState([]);
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
   const [cookies,setCookie,removeCookie]=useCookies();
+  const location = useLocation();
+  const roomName = location.state.name;
+
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {  // messagesEndRef.current が null でないことを確認
@@ -21,7 +24,7 @@ const MessageApp = ({room}) => {
   };
 
   const getMessages= ()=>{
-    fetch(`https://localhost:7038/api/ChatCtl?room=${room}`,{
+    fetch(`https://localhost:7038/api/ChatCtl?room=${roomName}`,{
       method:'GET',
       credentials: 'include',
     })
@@ -30,7 +33,10 @@ const MessageApp = ({room}) => {
     })
     .then((data)=>{
       console.log("Response data:", data);//ここでクッキーが存在しないと表示される
-      const stermessa=data.result.map(e=>e.message);//resultの中のメッセージを取り出し
+      const stermessa=data.result.map(e=>({
+        message:e.message,
+        user:e.user
+      }));//resultの中のメッセージを取り出し
       setUserMessages([...stermessa]);//メッセージを表示するために上の変数をここに入れる。
     })
     .catch((error)=>{console.log("Error feth",error)})
@@ -42,60 +48,31 @@ const MessageApp = ({room}) => {
   //レンダリングを行う
   //
   useEffect(() => {
-
-    //テスト用
-    fetch('https://localhost:7038/api/ChatSessionCtl',{
-      mode:'cors',
-      credentials:'include',
-      headers:{
-        'Content-Type':'application/json'
-      }
-    })
-    .then((response)=>{
-      return response.json();
-    })
-    .then((data)=>{
-      console.log('sck',data);
-      //setCookie('session_id',data.result.sessionId);
-    })
-    //const intervalId = setInterval(() => {
-    //  getMessages();
-    //}, 10000);
-  
-    // 初回実行時にもgetMessagesを呼び出す
-    //getMessages();
-  
-    // コンポーネントがアンマウントされたときにクリーンアップ
-    //return () => clearInterval(intervalId);
+    const timer = setInterval(()=>{
+      getMessages();
+    },9000);
+    return ()=>{
+      clearTimeout(timer);
+    }
   },[]);
 
   //----------
   /*POSTを行う*/
   //----------
   const handleMessageSend = () => {
-    fetch(`https://localhost:7038/api/ChatCtl?message=${inputValue}&room=${room}`, {
+    fetch(`https://localhost:7038/api/ChatCtl?message=${inputValue}&room=${roomName}`, {
       method: 'POST',
       credentials:'include',//sameoriginはクロスリジンには送信しない。
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        //"Cookie": "session_id=<65cc897e-6225-4e14-b788-fdf7d2da24a2>",
-        //'Access-Control-Allow-Origin': 'http://localhost:7038',
-        // 'Access-Control-Request-Method': 'POST',
-        //'Access-Control-Allow-Credentials':'true',
       },      
     })
     .then((response) => {
-      // サーバーからのレスポンスヘッダーに含まれるCookieを取得
-      //const sessionCookie = response.headers.get('session_id');
-      //if (sessionCookie) {
-        // クッキーが存在する場合、セッションクッキーを設定
-      //  setSessionCookie(sessionCookie);
-      //}
       return response.json();
     })
     .then((data) => {
-      console.log("data:",data);
+      //console.log("data:",data);
       //const userName=data.result.user;
       setInputValue("");
       //setSender(...sender,userName);
@@ -117,7 +94,7 @@ const MessageApp = ({room}) => {
       <div className="message-container">
         {usermessages.map((data,index)=>(
               <div key={index} className="message">
-                <strong>{sender}</strong> <p>{data}</p>
+                <strong>{data.user}</strong> <p>{data.message}</p>
              </div>
         ))}
         <div ref={messagesEndRef} />
