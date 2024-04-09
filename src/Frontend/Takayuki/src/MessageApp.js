@@ -1,12 +1,13 @@
+//Reactフレームワーク
 import React, { useState,useEffect,useRef } from "react";
+//パッケージ
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useLocation } from "react-router-dom";
+//CSS
 import "./Message.css";
 
-//--------
-/*GETを行う*/
-//--------
+
 const MessageApp = () => {
   const [usermessages, setUserMessages] = useState([]);
   const [inputValue, setInputValue]     = useState("");
@@ -22,7 +23,10 @@ const MessageApp = () => {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   };
-
+  
+  //--------
+  /*GETを行う*/
+  //--------
   const getMessages= ()=>{
     fetch(`https://localhost:7038/api/ChatCtl?room=${roomName}`,{
       method:'GET',
@@ -32,7 +36,7 @@ const MessageApp = () => {
       return response.json();
     })
     .then((data)=>{
-      console.log("Response data:", data);//ここでクッキーが存在しないと表示される
+      console.log("Response data:", data);
       const stermessa=data.result.map(e=>({
         message:e.message,
         user:e.user
@@ -50,9 +54,9 @@ const MessageApp = () => {
   useEffect(() => {
     const timer = setInterval(()=>{
       getMessages();
-    },9000);
+    },3000);
     return ()=>{
-      clearTimeout(timer);
+      clearInterval(timer);
     }
   },[]);
 
@@ -109,6 +113,7 @@ const MessageApp = () => {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          placeholder="入力"
           className="input-text"
         />
         <button onClick={handleMessageSend} className="send-button">

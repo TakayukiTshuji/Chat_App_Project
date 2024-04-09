@@ -1,19 +1,22 @@
+//Reactフレームワーク
 import React, { useState }from 'react'
+//パッケージ
 import { useNavigate } from 'react-router-dom';
 
 
 const Addgrp = () => {
     const [inptext,setinptext]=useState("");
-    const [trfal_P,settrfal_P]=useState(false);
-    const [trfal_D,settrfal_D]=useState(false);
+    const [trfal_P,settrfal_P]=useState("");
+    const [trfal_D,settrfal_D]=useState("");
     const navigate=useNavigate();
+    let listname;
 
     const handleChange=()=>{
         const textgrp={
             "grpName":inptext,
             "isPrivata":trfal_P,
             "isDm":trfal_D,
-            "whitelist":[]
+            "whitelist":[listname]
         };
 
         fetch(`https://localhost:7038/api/ChatRoomCtl?name=${textgrp.grpName}&isPrivate=${textgrp.isPrivata}&isDm=${textgrp.isDm}`,{
@@ -38,30 +41,54 @@ const Addgrp = () => {
         .catch((error)=>{console.log("Grp:Error sending message",error);})
     }
 
-  return (
-    <div>
-        <input 
-            type='text'
-            value={inptext}
-            onChange={(e)=>setinptext(e.target.value)}
-        />
-        <input
-            type='radio'
-            value={'閲覧するメンバーの制限'}
-            onClick={()=>settrfal_P(true)}
-        />
-        <label>isPrivate</label>
-        <input
-            type='radio'
-            value={'ダイレクトメールに変更'}
-            onClick={()=>settrfal_D(true)}
-        />
-        <label>isDm</label>
-        <p>一回trueにすると元に戻せません</p>
-        <button
-            onClick={handleChange}
-        >Add</button>
-    </div>
+    return (
+        <div>
+            <input 
+                type='text'
+                value={inptext}
+                onChange={(e)=>setinptext(e.target.value)}
+            />
+
+            <label>
+            <input
+                type='radio'
+                value={'閲覧するメンバーの制限'}
+                checked={trfal_P === 'true'}
+                onClick={()=>settrfal_P(true)}
+            />isPrivate
+            </label>
+
+            <label>
+            <input
+                type='radio'
+                value={'ダイレクトメールに変更'}
+                checked={trfal_D === 'true'}
+                onClick={()=>settrfal_D(true)}
+            />isDm
+            </label>
+
+            <label>
+            <input 
+                type='button'
+                onClick={()=>{
+                    settrfal_D("");
+                    settrfal_P("");
+                }}
+                value={'リセット'}
+            />
+            </label>
+
+            {trfal_P ? (
+                <input type='text' value={listname} placeholder='ユーザ名'/>
+                
+            ):(
+                <></>
+            )}
+
+            <button
+                onClick={handleChange}
+            >Add</button>
+        </div>
   )
 }
 

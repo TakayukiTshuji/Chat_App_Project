@@ -1,8 +1,10 @@
+//Reactフレームワーク
 import React, {useState,useRef, useEffect}from 'react';
-//import MessageApp from './MessageApp';
+//パッケージ
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
-
+import { json, useNavigate } from 'react-router-dom';
+//外部フレームワーク
+import { motion,AnimatePresence } from 'framer-motion';
 
 const Room = () => {
     const messagesEndRef = useRef(null);
@@ -10,12 +12,11 @@ const Room = () => {
     const [unionRoom,setunionRoom]=useState([]);
     const [cookies,setCookie,removeCookie]=useCookies(['session_id']);
     const navigate = useNavigate();
-
     let roomNameID=[];
 
 
     const scrollToBottom = () => {
-        if (messagesEndRef.current) {  // messagesEndRef.current が null でないことを確認
+        if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
         }
     };
@@ -24,7 +25,6 @@ const Room = () => {
         setTimeout(()=>{
             getRoom();
         },5000);
-        //テスト用
     },[])
 
     const getRoom=()=>{
@@ -41,7 +41,6 @@ const Room = () => {
             console.log("successRoomData:",data);
             const roomName=data.result.map(e=>e.name);
             roomNameID=data.result.map(e=>e.room_id);
-            //console.log(roomNameID);
             setroom([...roomName]);
             setunionRoom([...roomName]);
         })
@@ -67,7 +66,23 @@ const Room = () => {
     const Logout=()=>{
         removeCookie('sessionId');
         navigate('/');
-      }
+    }
+    const DeleteRoom=()=>{
+
+        fetch("https://localhost:7038/api/ChatRoomCtl/Delete",{
+            method:'DELETE',
+            credentials:'include',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then((response)=>{
+            console.log("削除",response);
+            return json(response);
+        })
+
+
+    }
     
     return (
         <div>
@@ -76,9 +91,16 @@ const Room = () => {
             <button onClick={changeAddRom}>追加</button>
             <button onClick={getRoom}>更新</button>
             <div>
-            {room.map((data, index) => (
+            <motion.section
+                initial={{ opacity: 0 }} // 初期状態
+                animate={{ opacity: 1 }} // マウント時
+                exit={{ opacity: 0 }}    // アンマウント時
+            >
+                {room.map((data, index) => (
                 <button key={index} onClick={() => handleRoomClick(data)}>{data}</button>
-            ))}
+                ))}
+            </motion.section>
+            
             </div>
         </div>
     )

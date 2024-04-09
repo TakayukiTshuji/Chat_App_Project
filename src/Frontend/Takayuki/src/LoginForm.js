@@ -1,8 +1,12 @@
+//Reactフレームワーク
 import React, {  useState,useEffect } from 'react';
+//パッケージ
 import { useNavigate,Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+//外部ライブラリ
 import CryptoJS from 'crypto-js';
-//import {motion} from "framer-motion"
+import {motion} from "framer-motion"
+//CSS
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -15,8 +19,6 @@ const LoginForm = () => {
   const ChangeHas=()=>{
     const CHname=name;
     const CHpass=CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex).toUpperCase();
-    console.log(CHpass);
-    console.log(CHname);
     handleSession(CHname,CHpass);
   }
 
@@ -33,9 +35,9 @@ const LoginForm = () => {
       console.log(data);
       setname("");      //入力した文字を消す
       setpassword("");  //入力した文字を消す
-      setDat(data);     //dataがあるか確認するテスト
+      setDat(data.message);     //dataがあるか確認するテスト
       setCookie('session_id',data.result.sessionId,{path:'/',sameSite:'none'});
-      //session_idの名前、session_idの値、オプションでどこでも使えるようにした
+      //session_idの名前、session_idの値、オプションでどこでも使えるようにした      
 
       //ページ遷移を行う
       navigate("/Room");
@@ -50,11 +52,13 @@ const LoginForm = () => {
       <input 
       type='text'
       value={name}
+      placeholder='ユーザ名'
       onChange={(e)=>setname(e.target.value)}
       />
       <input
       type='password'
       value={password}
+      placeholder='パスワード'
       onChange={(e)=>setpassword(e.target.value)}
       />
       <button onClick={ChangeHas}>Send</button>
@@ -65,9 +69,9 @@ const LoginForm = () => {
 
       <div>
         {dat ? (
-          <p>成功</p>
+          <p>{dat}</p>
         ):(
-          <p>データ取得中...</p>
+          <></>
         )}
       </div>
     </div>

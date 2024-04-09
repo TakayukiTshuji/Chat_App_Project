@@ -1,4 +1,6 @@
+//Reactフレームワーク
 import React,{useState} from 'react'
+//パッケージ
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -29,11 +31,13 @@ const CreateUser = () => {
             <input 
             type='text'
             value={input}
+            placeholder='ユーザ名'
             onChange={(e)=>setinput(e.target.value)}
             />
             <input
             type='text'
             value={inpPass}
+            placeholder='パスワード'
             onChange={(e)=>setinpPass(e.target.value)}
             />
             <button onClick={create}>Create!</button>
