@@ -15,8 +15,7 @@ Web
 ### バックエンドフレームワーク　<img src="https://img.shields.io/badge/-ASP.NET-AA40FF.svg?logo=.NET&style=plastic">
 ### バックエンド言語　<img src="https://img.shields.io/badge/-Cshape-47EE48.svg?logo=Csharp&style=plastic">
 ### ミドルウェア　<img src="https://img.shields.io/badge/-Mongodb-47A248.svg?logo=mongodb&style=plastic">
-### エディタ　<img src="https://img.shields.io/badge/-Visualstudiocode-007ACC.svg?logo=visualstudiocode&style=plastic">
-### デザイン　<img src="https://img.shields.io/badge/-Figma-F24E1E.svg?logo=figma&style=plastic">
+### その他　<img src="https://img.shields.io/badge/-Visualstudiocode-007ACC.svg?logo=visualstudiocode&style=plastic"><img src="https://img.shields.io/badge/-VisualStudio-CC80EE.svg?logo=visualstudio&style=plastic"><img src="https://img.shields.io/badge/-Figma-F24E1E.svg?logo=figma&style=plastic">
 
 
 # テスト環境構築
