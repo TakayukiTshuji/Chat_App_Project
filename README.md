@@ -1,7 +1,15 @@
+<img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic">
+<img src="https://img.shields.io/badge/-Node.js-339933.svg?logo=node.js&style=plastic">
+<img src="https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic">
+<img src="https://img.shields.io/badge/-ASP.NET-AA40FF.svg?logo=.NET&style=plastic">
+<img src="https://img.shields.io/badge/-Cshape-47EE48.svg?logo=Csharp&style=plastic">
+<img src="https://img.shields.io/badge/-Mongodb-47A248.svg?logo=mongodb&style=plastic">
+<img src="https://img.shields.io/badge/-Visualstudiocode-007ACC.svg?logo=visualstudiocode&style=plastic">
+
 # ChatApp_Project
-*使用言語*
-C#(ASP.NET)
-JavaScript(React)
+
+# 概要
+チャットアプリを作成し色んな人とのコミュニケーションを図りやすくさせる。
 
 *実装プラットフォーム*
 スマートフォン
@@ -9,8 +17,12 @@ JavaScript(React)
 *実装場所*
 Web
 
-# 概要
-チャットアプリを作成し色んな人とのコミュニケーションを図りやすくさせる。
+# 使用技術
+フロントエンド：React
+バックエンド：ASP.NET
+データベース：MongoDB
+デザイン：Figma
+
 
 # テスト環境構築
 このプロジェクトを使用するには以下のダウンロードが必要です
