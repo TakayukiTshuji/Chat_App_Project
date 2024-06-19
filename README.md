@@ -1,24 +1,3 @@
-### フロントエンドフレームワーク
-<img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"><img src="https://img.shields.io/badge/-Node.js-339933.svg?logo=node.js&style=plastic">
-
-### フロントエンド言語
-<img src="https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic">
-
-### バックエンドフレームワーク
-<img src="https://img.shields.io/badge/-ASP.NET-AA40FF.svg?logo=.NET&style=plastic">
-
-### バックエンド言語
-<img src="https://img.shields.io/badge/-Cshape-47EE48.svg?logo=Csharp&style=plastic">
-
-### ミドルウェア
-<img src="https://img.shields.io/badge/-Mongodb-47A248.svg?logo=mongodb&style=plastic">
-
-### エディタ
-<img src="https://img.shields.io/badge/-Visualstudiocode-007ACC.svg?logo=visualstudiocode&style=plastic">
-
-### デザイン
-<img src="https://img.shields.io/badge/-Figma-F24E1E.svg?logo=figma&style=plastic">
-
 # ChatApp_Project
 
 # 概要
@@ -31,10 +10,13 @@
 Web
 
 # 使用技術
-フロントエンド：React
-バックエンド：ASP.NET
-データベース：MongoDB
-デザイン：Figma
+### フロントエンドフレームワーク　<img src="https://img.shields.io/badge/-React-61DAFB.svg?logo=react&style=plastic"><img src="https://img.shields.io/badge/-Node.js-339933.svg?logo=node.js&style=plastic">
+### フロントエンド言語　<img src="https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic">
+### バックエンドフレームワーク　<img src="https://img.shields.io/badge/-ASP.NET-AA40FF.svg?logo=.NET&style=plastic">
+### バックエンド言語　<img src="https://img.shields.io/badge/-Cshape-47EE48.svg?logo=Csharp&style=plastic">
+### ミドルウェア　<img src="https://img.shields.io/badge/-Mongodb-47A248.svg?logo=mongodb&style=plastic">
+### エディタ　<img src="https://img.shields.io/badge/-Visualstudiocode-007ACC.svg?logo=visualstudiocode&style=plastic">
+### デザイン　<img src="https://img.shields.io/badge/-Figma-F24E1E.svg?logo=figma&style=plastic">
 
 
 # テスト環境構築
