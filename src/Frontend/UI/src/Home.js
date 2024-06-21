@@ -5,10 +5,10 @@ import './Home.css';
 function Home() {
     const navigate = useNavigate()
     const handleSessionForm = () => {
-      navigate('../sessing')
+      navigate('/Session')
   }
   const handleLoginForm = () => {
-        navigate('../')
+        navigate('/Home')
   }
   return (
     <div>
@@ -20,7 +20,7 @@ function Home() {
       <div className="Body">
         <div className="item">
             <div className="text">新しく登録しましょう</div>
-            <input type="button" onClick={handleSesionForm} value="新規登録"/>
+            <input type="button" onClick={handleSessionForm} value="新規登録"/>
         </div>
         <div className="item">
             <div classsName="text">もう作成した？ではログインしよう！</div>

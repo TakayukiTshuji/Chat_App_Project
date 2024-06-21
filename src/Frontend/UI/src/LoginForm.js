@@ -5,7 +5,7 @@ import { useNavigate,Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 //外部ライブラリ
 import CryptoJS from 'crypto-js';
-import {motion} from "framer-motion"
+import {motion} from "framer-motion";
 //CSS
 import "./LoginForm.css";
 

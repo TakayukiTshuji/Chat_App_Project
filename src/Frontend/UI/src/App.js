@@ -6,6 +6,7 @@ import MessageApp from "./MessageApp";
 import CreateUser from "./CreateUser";
 import Room from "./Room";
 import Addgrp from "./Addgrp";
+import Home from "./Home";
 
 function App() {  
   return (
@@ -14,8 +15,8 @@ function App() {
     //<Route>各遷移するアドレスバー名と、遷移するコンポーネントを作成
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<LoginForm/>}/>
-        <Route path={'/Home'} element={<Home/>}/>
+        <Route path={'/'} element={<Home/>}/>
+        <Route path={'/Home'} element={<LoginForm/>}/>
         <Route path={'/Room'} element={<Room/>}/>
         <Route path={'/AddGroup'} element={<Addgrp/>}/>
         <Route path={'/session'} element={<CreateUser/>}/>
@@ -24,6 +25,7 @@ function App() {
      </BrowserRouter>
   );//コンポーネント化をするときは最初は大文字にする
   //<GroupButton/>
+  //
 }
 
 export default App
