@@ -1,3 +1,57 @@
+.Header{
+   position: absolute;
+   width: 1437px;
+   height: 80px;
+   left: 0px;
+   top: 0px;
+   background: #BAE79F;
+   /*background-color: rgb(128, 255, 155);
+   padding-bottom: 40px;*/
+}
+.logn {
+   text-align: right;
+}
 .logininput{
     position: center;
+}
+.inptext{
+   position: absolute;
+   width: 233px;
+   height: 37px;
+   left: 63px;
+   top: 337px;
+}
+.inppassword{
+
+   position: absolute;
+   width: 233px;
+   height: 37px;
+   left: 63px;
+   top: 440px;
+}
+.clickbu{
+
+   position: absolute;
+   width: 120.04px;
+   height: 37px;
+   left: 46%;
+   top: 576px;
+}
+.linkCreateUser{
+
+   position: absolute;
+   width: 200px;
+   height: 23px;
+   left: 45%;
+   top: 130px;
+
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 13px;
+   line-height: 16px;
+}
+.inpfield{
+   position: absolute;
+   left: 38%;
 }

@@ -3,6 +3,8 @@ import React,{useState} from 'react'
 //パッケージ
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+//CSS
+import './CreateUser.css';
 
 const CreateUser = () => {
     const [input,setinput]=useState("");
@@ -27,21 +29,34 @@ const CreateUser = () => {
 
     return (
         <div>
-            
-            <input 
-            type='text'
-            value={input}
-            placeholder='ユーザ名'
-            onChange={(e)=>setinput(e.target.value)}
-            />
-            <input
-            type='text'
-            value={inpPass}
-            placeholder='パスワード'
-            onChange={(e)=>setinpPass(e.target.value)}
-            />
-            <button onClick={create}>Create!</button>
-            <div>
+            <div className="Header">
+                <p className="chatapp">ChatApp</p>
+            </div>
+
+            <div className='inpfield'>
+                <input 
+                type='text'
+                value={input}
+                placeholder='ユーザ名'
+                onChange={(e)=>setinput(e.target.value)}
+                className='inptext'
+                />
+            </div>
+
+            <div className='inpfield'>
+                <input
+                type='text'
+                value={inpPass}
+                placeholder='パスワード'
+                onChange={(e)=>setinpPass(e.target.value)}
+                className='inppassword'
+                />
+            </div>
+
+            <button
+            onClick={create}
+            className='clickbu'>Create!</button>
+            <div className='linkCreateUser'>
                 <Link to={'/'}>戻る</Link>
             </div>
         </div>
