@@ -49,21 +49,35 @@ const LoginForm = () => {
 
   return (
     <div className='logininput'>
-      <input 
-      type='text'
-      value={name}
-      placeholder='ユーザ名'
-      onChange={(e)=>setname(e.target.value)}
-      />
-      <input
-      type='password'
-      value={password}
-      placeholder='パスワード'
-      onChange={(e)=>setpassword(e.target.value)}
-      />
-      <button onClick={ChangeHas}>Send</button>
+      <div className="Header">
+        <p className="chatapp">ChatApp</p>
+      </div>
 
-      <div>
+      <div className='inpfield'>
+        <input 
+        type='text'
+        value={name}
+        placeholder='ユーザ名'
+        onChange={(e)=>setname(e.target.value)}
+        className='inptext'
+        />
+      </div>
+
+      <div className='inpfield'>
+        <input
+        type='password'
+        value={password}
+        placeholder='パスワード'
+        onChange={(e)=>setpassword(e.target.value)}
+        className='inppassword'
+        />
+      </div>
+
+      <button 
+      onClick={ChangeHas}
+      className='clickbu'>Send</button>
+
+      <div className='linkCreateUser'>
         新規作成はこちら<Link to={'/session'}>こちら</Link>
       </div>
 

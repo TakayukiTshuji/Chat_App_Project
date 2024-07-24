@@ -67,6 +67,7 @@ const Room = () => {
         removeCookie('sessionId');
         navigate('/');
     }
+    //権限が必要
     const DeleteRoom=()=>{
 
         fetch("https://localhost:7038/api/ChatRoomCtl/Delete",{
