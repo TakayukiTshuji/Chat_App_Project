@@ -1,6 +1,7 @@
 .Head{
   background-color: rgb(128, 255, 155);
-  padding-bottom: 1px;
+  width: 100%;
+  padding-bottom: 30px;
 }
 .chatapp{
   text-align: left;  /* 文章を左寄せする(※) */
