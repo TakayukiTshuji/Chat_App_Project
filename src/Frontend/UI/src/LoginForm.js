@@ -75,7 +75,7 @@ const LoginForm = () => {
 
       <button 
       onClick={ChangeHas}
-      className='clickbu'>Send</button>
+      className='clickbu'>ログイン</button>
 
       <div className='linkCreateUser'>
         新規作成はこちら<Link to={'/session'}>こちら</Link>

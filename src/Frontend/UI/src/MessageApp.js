@@ -89,6 +89,10 @@ const MessageApp = () => {
     navigate('/');
   }
 
+  const BackRoom = () =>{
+    navigate('/Room');
+  }
+
   
   //
   //表示させる
@@ -106,6 +110,7 @@ const MessageApp = () => {
       <div>
         <button onClick={getMessages}>更新</button>
         <button onClick={Logout}>ログアウト</button>
+        <button onClick={BackRoom}>戻る</button>
       </div>
       
       <div className="input-container">

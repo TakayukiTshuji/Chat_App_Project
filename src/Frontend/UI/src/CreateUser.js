@@ -57,7 +57,7 @@ const CreateUser = () => {
             onClick={create}
             className='clickbu'>Create!</button>
             <div className='linkCreateUser'>
-                <Link to={'/'}>戻る</Link>
+                <Link to={'/'}>ホームに戻る</Link>
             </div>
         </div>
     )
