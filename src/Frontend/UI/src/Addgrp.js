@@ -41,8 +41,13 @@ const Addgrp = () => {
         .catch((error)=>{console.log("Grp:Error sending message",error);})
     }
 
+    const BackRoom=()=>{
+        navigate('/Room')
+    }
+
     return (
         <div>
+            <button onClick={BackRoom}>戻る</button>
             <input 
                 type='text'
                 value={inptext}

@@ -1,0 +1,58 @@
+.HeaderRoom{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 1437px;
+    height: 80px;
+    left: 0px;
+    top: 0px;
+    padding: 10px;
+    background: #BAE79F;
+}
+.RoomMenu:first-child{
+    margin-left: auto;
+}
+.RoomList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.Roomid{
+    /* Group 8 */
+    position: relative;
+    width: 360px;
+    height: 47px;
+    left: 0px;
+    top: 150px;
+    margin: 14px;
+    border-radius: 10px;
+    background: #E5F4FF;
+    cursor: pointer;
+}
+.RoomAdd{
+    position: relative;
+    width: 103px;
+    height: 36px;
+    border-radius: 50px;
+    background: #1EFA27;
+    margin-left: 900px;
+}
+.Roomget{
+    position: relative;
+    width: 103px;
+    height: 36px;
+    border-radius: 50px;
+    background: #8E0DBB;
+    color: white;
+    margin: 5px;
+}
+.RoomLogout{
+    /* Rectangle 17 */
+    position: relative;
+    width: 103px;
+    height: 36px;
+    border-radius: 50px;
+    background: #B4AC84;
+    margin: 5px;
+}
