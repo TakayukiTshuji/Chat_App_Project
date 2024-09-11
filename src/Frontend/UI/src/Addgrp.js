@@ -3,6 +3,8 @@ import React, { useState }from 'react'
 //パッケージ
 import { useNavigate } from 'react-router-dom';
 
+import "./Addgrp.css"
+
 
 const Addgrp = () => {
     const [inptext,setinptext]=useState("");
@@ -47,29 +49,38 @@ const Addgrp = () => {
 
     return (
         <div>
-            <button onClick={BackRoom}>戻る</button>
-            <input 
+            <div className='HeaderAdd'>
+                <h1>AddGroup</h1>
+                <button onClick={BackRoom}>戻る</button>
+            </div>
+            
+
+            <input
+                className='inpRoom'
                 type='text'
                 value={inptext}
+                placeholder='新規部屋名'
                 onChange={(e)=>setinptext(e.target.value)}
             />
 
-            <label>
+            <label className='labelP'>
             <input
+                className='radioPrivate'
                 type='radio'
                 value={'閲覧するメンバーの制限'}
                 checked={trfal_P === 'true'}
                 onClick={()=>settrfal_P(true)}
-            />isPrivate
+            />グループ化
             </label>
 
-            <label>
+            <label className='labelD'>
             <input
+                className='radioDm'
                 type='radio'
                 value={'ダイレクトメールに変更'}
                 checked={trfal_D === 'true'}
                 onClick={()=>settrfal_D(true)}
-            />isDm
+            />ダイレクトメール化
             </label>
 
             <label>
