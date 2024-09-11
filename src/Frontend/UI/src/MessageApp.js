@@ -99,6 +99,13 @@ const MessageApp = () => {
   //
   return (
     <div>
+      <div className="HeaderMessage">
+        <h1>Chat</h1>
+        <button onClick={BackRoom} className="ChatBack">戻る</button>
+        <button onClick={getMessages} className="Chatget">更新</button>
+        <button onClick={Logout} className="ChatLogout">ログアウト</button>
+      </div>
+
       <div className="message-container">
         {usermessages.map((data,index)=>(
               <div key={index} className="message">
@@ -107,11 +114,7 @@ const MessageApp = () => {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div>
-        <button onClick={getMessages}>更新</button>
-        <button onClick={Logout}>ログアウト</button>
-        <button onClick={BackRoom}>戻る</button>
-      </div>
+      
       
       <div className="input-container">
         <input
