@@ -99,7 +99,7 @@ const Room = () => {
                 </div>
             </div>
             
-            <div className='RoomList'>
+            <div>
                 <motion.section
                     initial={{ opacity: 0 }} // 初期状態
                     animate={{ opacity: 1 }} // マウント時
