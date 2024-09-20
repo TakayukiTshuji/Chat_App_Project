@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import './Home.css';
 
 function Home() {
-    const navigate = useNavigate()
-    const handleSessionForm = () => {
-      navigate('/Session')
+  const navigate = useNavigate();
+  const handleSessionForm = () => {
+      navigate('/Session');
   }
   const handleLoginForm = () => {
-        navigate('/Home')
+        navigate('/Home');
   }
   return (
     <div>

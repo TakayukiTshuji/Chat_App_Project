@@ -10,15 +10,20 @@ const Addgrp = () => {
     const [inptext,setinptext]=useState("");
     const [trfal_P,settrfal_P]=useState("");
     const [trfal_D,settrfal_D]=useState("");
+    const [usr,setusr]=useState([]);
+    const [listname, setlistname] = useState("");
     const navigate=useNavigate();
-    let listname;
+
+    const BackRoom=()=>{
+        navigate('/Room')
+    }
 
     const handleChange=()=>{
         const textgrp={
             "grpName":inptext,
             "isPrivata":trfal_P,
             "isDm":trfal_D,
-            "whitelist":[listname]
+            "whitelist": usr
         };
 
         fetch(`https://localhost:7038/api/ChatRoomCtl?name=${textgrp.grpName}&isPrivate=${textgrp.isPrivata}&isDm=${textgrp.isDm}`,{
@@ -38,20 +43,24 @@ const Addgrp = () => {
             settrfal_D(false);
             settrfal_P(false);
             setinptext("");
+            setusr([]);
             navigate('/Room');
         })
         .catch((error)=>{console.log("Grp:Error sending message",error);})
     }
 
-    const BackRoom=()=>{
-        navigate('/Room')
+    const addUser=()=>{
+        if(listname.trim()!==""){
+            setusr([...usr, listname]);
+            setlistname("");   
+        }
     }
 
     return (
         <div>
             <div className='HeaderAdd'>
-                <h1>AddGroup</h1>
-                <button onClick={BackRoom}>戻る</button>
+                <h1>部屋の新規作成</h1>
+                <button onClick={BackRoom} className='AddBack'>戻る</button>
             </div>
             
 
@@ -67,9 +76,11 @@ const Addgrp = () => {
             <input
                 className='radioPrivate'
                 type='radio'
-                value={'閲覧するメンバーの制限'}
-                checked={trfal_P === 'true'}
-                onClick={()=>settrfal_P(true)}
+                checked={trfal_P}
+                onClick={()=>{
+                    settrfal_P(true);
+                    settrfal_D(false);
+                }}
             />グループ化
             </label>
 
@@ -77,33 +88,42 @@ const Addgrp = () => {
             <input
                 className='radioDm'
                 type='radio'
-                value={'ダイレクトメールに変更'}
-                checked={trfal_D === 'true'}
-                onClick={()=>settrfal_D(true)}
+                checked={trfal_D}
+                onClick={()=>{
+                    settrfal_D(true);
+                    settrfal_P(false);
+                }}
             />ダイレクトメール化
             </label>
 
-            <label>
-            <input 
-                type='button'
-                onClick={()=>{
-                    settrfal_D("");
-                    settrfal_P("");
-                }}
-                value={'リセット'}
-            />
-            </label>
-
             {trfal_P ? (
-                <input type='text' value={listname} placeholder='ユーザ名'/>
-                
-            ):(
-                <></>
-            )}
-
+                <div className='AddPuser'>
+                    {usr.map((usrname,index)=>(
+                        <p key={index} className='usrList'>{usrname}</p>
+                    ))}
+                    <input 
+                        type='text' 
+                        value={listname} 
+                        placeholder='参加するユーザ名' 
+                        onChange={(e)=>setlistname(e.target.value)}
+                    />
+                    <button onClick={addUser}>新たにユーザを追加</button>
+                </div>                
+            ):null}
+            {trfal_D ? (
+                <div className='AddDuser'>
+                    <input 
+                        type='text' 
+                        value={listname} 
+                        placeholder='DMユーザ名'
+                        onChange={(e)=>setlistname(e.target.value)}
+                    />
+                </div>
+            ):null}
+            
             <button
-                onClick={handleChange}
-            >Add</button>
+                onClick={handleChange} className='Decision'
+            >追加</button>
         </div>
   )
 }
