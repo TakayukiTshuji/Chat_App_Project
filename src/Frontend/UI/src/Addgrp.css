@@ -9,6 +9,15 @@
     padding: 10px;
     background: #BAE79F;
 }
+.AddBack{
+    position: relative;
+    width: 103px;
+    height: 36px;
+    border-radius: 50px;
+    background: #1EFA27;
+    margin-left: 900px;
+    cursor: pointer;
+}
 .inpRoom{
     position: absolute;
     width: 360px;
@@ -17,16 +26,33 @@
     top: 138px;
     border-radius: 10px;
 }
-.radioPrivate{
+.radioPrivate, .radioDm {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007BFF; 
+    border-radius: 50%;
+    background-color: white; 
     position: relative;
-    display: flex;
-    width: 45px;
-    height: 45px;
-    left: 0px;
-    top: -10px;
-
-    background: #D9D9D9;
+    cursor: pointer;
 }
+
+.radioPrivate:checked, .radioDm:checked {
+    background-color: #007BFF;
+}
+
+.radioPrivate:checked::before, .radioDm:checked::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .labelP{
     position: relative;
     display: flex;
@@ -43,15 +69,6 @@
     color: #000000;
     white-space: nowrap;
 }
-.radioDm{
-    position: relative;
-    display: flex;
-    width: 45px;
-    height: 45px;
-    left: 0px;
-    top: -10px;
-    background: #D9D9D9;
-}
 .labelD{
     position: relative;
     display: flex;
@@ -67,4 +84,64 @@
     line-height: 29px;
     color: #000000;
     white-space: nowrap;
+}
+.AddPuser{
+    position: absolute;
+    top: 500px;
+    left: 580px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.usrList{
+    /*position: relative;
+    display: flex;
+    top: 300px;
+    left: 600px;*/
+    margin-bottom: 2px;
+    font-size: 20px;
+    background-color: #BBB;
+}
+.Decision{
+    position: relative;
+    width: 120.04px;
+    height: 37px;
+    left: 1100px;
+    top: 200px; 
+    background: linear-gradient(90deg, #E5F4FF, #D1E9FF);
+    border-radius: 10px;
+    cursor: pointer;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 37px;
+    overflow: hidden;
+    transition: background 0.3s ease;
+}
+.Decision::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: skewX(-45deg);
+    transition: all 0.5s ease;
+}
+
+.Decision:hover::before {
+    left: 100%;
+}
+.Decision:hover {
+    background: linear-gradient(90deg, #D1E9FF, #A6CFFF);
+}
+.AddDuser{
+    position: absolute;
+    top: 500px;
+    left: 580px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
 }

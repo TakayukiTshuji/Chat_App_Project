@@ -15,10 +15,12 @@ const LoginForm = () => {
   const [dat,setDat]=useState(null);
   const navigate = useNavigate();
   const [cookies,setCookie]=useCookies(['session_id']);
+  const [Error,setError]=useState(false);
 
+  //入力されたパスワードが一旦SHA256に変換してからfetchを行う。
   const ChangeHas=()=>{
     const CHname=name;
-    const CHpass=CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex).toUpperCase();
+    const CHpass=CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex).toUpperCase();//.toUpperで文字を大文字に変換
     handleSession(CHname,CHpass);
   }
 
@@ -44,7 +46,19 @@ const LoginForm = () => {
     })
     .catch((error) => {
       console.error("Error during login:", error);
+      setError(true);
     });
+  }
+
+  //入力された情報の間違い(エラー)が起きた場合、エラー画面に遷移
+  if(Error){
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>入力された情報が間違いがあります。</p>
+        
+      </div>
+    )
   }
 
   return (

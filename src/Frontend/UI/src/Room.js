@@ -9,27 +9,27 @@ import { motion,AnimatePresence } from 'framer-motion';
 import './Room.css'
 
 const Room = () => {
-    const messagesEndRef = useRef(null);
     const [room,setroom]=useState([]);
     const [unionRoom,setunionRoom]=useState([]);
     const [cookies,setCookie,removeCookie]=useCookies(['session_id']);
     const navigate = useNavigate();
     let roomNameID=[];
 
+    //-------
+    //画面遷移
+    //
+    const changeAddRom=()=>{
+        navigate('/AddGroup');
+    }
+    const Logout=()=>{
+        removeCookie('sessionId');
+        navigate('/');
+    }
+    //--------
 
-    const scrollToBottom = () => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-        }
-    };
-
-    useEffect(()=>{
-        getRoom();
-        setTimeout(()=>{
-            getRoom();
-        },5000);
-    },[])
-
+    //----------
+    /*GETを行う*/
+    //----------
     const getRoom=async()=>{
         await fetch(`https://localhost:7038/api/ChatRoomCtl`,{
             credentials:'include',
@@ -47,14 +47,14 @@ const Room = () => {
             setroom([...roomName]);
             setunionRoom([...roomName]);
         })
-        .catch((error)=>{console.log("error:",error)})
-        .finally(()=>scrollToBottom());
+        .catch((error)=>{console.log("error:",error)});
     }
 
+    //入りたい部屋の番号を識別する関数
     const handleRoomClick=(roomid)=>{
         const Romnum=unionRoom.indexOf(roomid);
         if((Romnum!==-1)){
-            console.log("成功")
+            console.log("成功");
         }else{
             console.log("ありませんでした。");
         }
@@ -63,13 +63,7 @@ const Room = () => {
         console.log(roomid);
         navigate('/chat',{state:{name:Romnum}});
     }
-    const changeAddRom=()=>{
-        navigate('/AddGroup');
-    }
-    const Logout=()=>{
-        removeCookie('sessionId');
-        navigate('/');
-    }
+
     //Delete処理（恐らくバックエンドでの権限が必要、現時点では実装が難しい）
     /*const DeleteRoom=()=>{
 
@@ -87,6 +81,14 @@ const Room = () => {
 
 
     }*/
+
+    //5秒後で部屋の受け取りを行い、更新を行う
+    useEffect(()=>{
+        getRoom();
+        setTimeout(()=>{
+            getRoom();
+        },5000);
+    },[])
     
     return (
         <div>

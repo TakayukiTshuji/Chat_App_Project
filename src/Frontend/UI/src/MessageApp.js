@@ -11,6 +11,7 @@ import "./Message.css";
 const MessageApp = () => {
   const [usermessages, setUserMessages] = useState([]);
   const [inputValue, setInputValue]     = useState("");
+  const [messageSent,setmessageSent] = useState(false);
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
   const [cookies,setCookie,removeCookie]=useCookies();
@@ -23,75 +24,88 @@ const MessageApp = () => {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   };
+
+  //-----------
+  //画面遷移を行う関数
+  //
+  const Logout=()=>{
+    removeCookie('sessionId');
+    navigate('/');
+  }
+  const BackRoom = () =>{
+    navigate('/Room');
+  }
+  //-----------
   
   //--------
   /*GETを行う*/
   //--------
-  const getMessages= ()=>{
-    fetch(`https://localhost:7038/api/ChatCtl?room=${roomName}`,{
-      method:'GET',
-      credentials: 'include',
-    })
-    .then((response)=>{
-      return response.json();
-    })
-    .then((data)=>{
+  const getMessages = async()=>{
+    try{
+      const response = await fetch(`https://localhost:7038/api/ChatCtl?room=${roomName}`,{
+        method:'GET',
+        credentials: 'include',
+      });
+      const data = await response.json();
       console.log("Response data:", data);
       const stermessa=data.result.map(e=>({
         message:e.message,
         user:e.user
       }));//resultの中のメッセージを取り出し
       setUserMessages([...stermessa]);//メッセージを表示するために上の変数をここに入れる。
-    })
-    .catch((error)=>{console.log("Error feth",error)})
-    .finally(() => scrollToBottom());
-  };
-
-  
-  //
-  //レンダリングを行う
-  //
-  useEffect(() => {
-    const timer = setInterval(()=>{
-      getMessages();
-    },3000);
-    return ()=>{
-      clearInterval(timer);
     }
-  },[]);
+    catch(error){
+      console.log("Error feth",error);
+    }
+    finally{
+      scrollToBottom();
+    }
+  };
 
   //----------
   /*POSTを行う*/
   //----------
-  const handleMessageSend = () => {
-    fetch(`https://localhost:7038/api/ChatCtl?message=${inputValue}&room=${roomName}`, {
-      method: 'POST',
-      credentials:'include',//sameoriginはクロスリジンには送信しない。
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },      
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
+  const handleMessageSend = async() => {
+    try{
+      const response = await fetch(`https://localhost:7038/api/ChatCtl?message=${inputValue}&room=${roomName}`, {
+        method: 'POST',
+        credentials:'include',//sameoriginはクロスリジンには送信しない。
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },      
+      });
+      const data = await response.json();
       //console.log("data:",data);
       //const userName=data.result.user;
       setInputValue("");
+      setmessageSent(true);
       //setSender(...sender,userName);
-    })
-    .catch((error) => {console.error("Error sending message:", error)})
+      await getMessages();
+    }
+    catch(error){
+      console.error("Error sending message:", error);
+    }
   };
 
-  const Logout=()=>{
-    removeCookie('sessionId');
-    navigate('/');
-  }
+  //
+  //レンダリングを行う
+  //
 
-  const BackRoom = () =>{
-    navigate('/Room');
-  }
+  useEffect(() => {
+    if(messageSent){
+      getMessages();
+      setmessageSent(false);
+    }
+  },[messageSent]);
+
+  useEffect(() => {
+    getMessages();
+  },[])
+
+  useEffect(() => {
+    scrollToBottom();
+  },[usermessages]);
 
   
   //
@@ -100,7 +114,7 @@ const MessageApp = () => {
   return (
     <div>
       <div className="HeaderMessage">
-        <h1>Chat</h1>
+        <h1 className="ChatName">Chat</h1>
         <button onClick={BackRoom} className="ChatBack">戻る</button>
         <button onClick={getMessages} className="Chatget">更新</button>
         <button onClick={Logout} className="ChatLogout">ログアウト</button>

@@ -16,7 +16,7 @@
   border: 1px solid black;
   overflow: auto;
   position: absolute;
-  right: 280px;
+  right: 290px;
   bottom: 80px;
 }
 
@@ -32,7 +32,7 @@
   height: 80px;
   margin-top: 0px;
   position: absolute;
-  right: 280px;
+  right: 290px;
   bottom: 0px;
   text-align: center;
 }
@@ -42,14 +42,39 @@
   border-radius: 70px;
   font-size: 30px;
 }
-.send-button{
+.send-button {
+  position: relative;
   width: 162px;
   height: 59px;
   border-radius: 60px;
   font-size: 24px;
   color: white;
   background-color: #5D7DEC;
+  text-align: center;
+  line-height: 59px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  border: none;
 }
+.send-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: skewX(-45deg); 
+  transition: all 0.6s ease;
+}
+.send-button:hover::before {
+  left: 100%;
+}
+.send-button:hover {
+  background-color: #466AB6;
+}
+
 .Chatget{
   position: relative;
   width: 103px;
@@ -77,4 +102,8 @@
   background: #1EFA27;
   margin-left: 900px;
   cursor: pointer;
+}
+.ChatName{
+  position: absolute;
+  left: 50px;
 }
