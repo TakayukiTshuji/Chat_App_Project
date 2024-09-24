@@ -9,6 +9,7 @@ npm install react
 npm install react-router-dom
 npm install react-cookie
 npm install crypto-js
+npm install framer-motion
 ```
 
 これらのコマンドで４つのパッケージがインストールされる。
