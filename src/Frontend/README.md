@@ -1,6 +1,19 @@
-# 概要
-Reactでのチャットアプリを作成
-コードをダウンロードは緑色の<>codeを押してDownload ZIPを押すとダウンロードが始まる。
-その後ダウンロードしたzipファイルを全て解凍を行うことで中身を見れる
-# 画像
-![gazou](https://d.kuku.lu/ws7u4jncb)
+# テスト環境構築
+このプロジェクトを使用するには以下のダウンロードが必要です
+
+Node.js     (https://nodejs.org/en/download)
+Node.jsをインストールすることによりnpmコマンドを使用し、以下のコマンドを打ちインストールする必要がある
+```
+npm install react
+npm install react-router-dom
+npm install react-cookie
+npm install crypto-js
+npm install framer-motion
+```
+
+これらのコマンドでパッケージがインストールされる。
+そして、このプロジェクトを実際に動かすときは以下のコマンドを打つことで立ち上がる
+
+```
+npm start
+```
